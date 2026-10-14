@@ -1,0 +1,563 @@
+<?php
+$this->load->view('includes/header-apply.php');
+?>
+<!--===============PAGE CONTENT==============-->
+<section class="contact-box-sections">
+	<div class="pd_top_5"></div>
+	<?php
+	if ($processstep == 'step1') {
+		?>
+	<img src="<?php echo base_url('assets/images/lendingpage1.png'); ?>" alt="customer" class="img-fluid d-md-none" />
+	<?php } ?>
+	<!--===============spacing==============-->
+	<div class="auto-container px-2">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="contact_form_box_all type_four mr_md_top_zero responsive-border">
+					<?php
+					if ($processstep == 'step1') {
+						?>
+					<div class="title_all_box style_one  dark_color">
+						<!-- <p class="">Begin Your Loan Process With Few Details</p> -->
+						<h6 class="fs-5 lh-base mb-2">Get <div class="range" style="display: inline-block;">
+								<div class="range__value">
+									<span class=""></span>
+								</div>
+							</div> Personal Loan in Minutes!</h6>
+						<!--===============spacing==============-->
+					</div>
+					<div class="contact_form_box_inner simple_form">
+						<div class="contact_form_shortcode">
+							<?php echo form_open('digital/sendotpCode', array('id' => 'submitForm1', 'class' => 'wpcf7-form init', 'novalidate' => 'novalidate')); ?>
+							<div class="row gutter_15px">
+								<div class="col-lg-12 form-group mb-2">
+									<div class="range mt-5">
+										<div class="range__slider digi_range__slider">
+											<input type="range" name="loanamount" step="10000" id="loanSlider">
+											<div class="range__tooltip" id="rangeTooltip">₹0</div>
+										</div>
+										<!-- <div class="range__value mt-2">
+											<label>Loan Amount : </label>
+											<span></span>
+										</div> -->
+										<!-- <div class="range__slider">
+											<input type="range" name="loanamount" step="10000">
+										</div> -->
+										<div class="range__emi">
+											<label>EMI Amount : </label>
+											<span class="fs-5"></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-12 form-group">
+									<label style="display: block !important;"> Phone Number<br>
+										<span class="wpcf7-form-control-wrap" data-name="tel-922">
+											<input type="text" aria-required="true" name="mobile" id="mobileno"
+												class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+												placeholder="Enter Bank Registered Number" inputmode="numeric" required
+												size="40" maxlength="10" minlength="10"
+												data-validation-regex-regex="^[6789]\d{9}$"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></span>
+										<div class="help-block font-small-3"></div>
+										<br>
+									</label>
+								</div>
+								<div class="col-lg-12 form-group">
+									<button type="submit" id="form-submit1"
+										class="wpcf7-form-control has-spinner wpcf7-submit custom-btn">START
+										PROCESS</button>
+								</div>
+								<!--===============spacing==============-->
+								<div class="pd_bottom_10"></div>
+								<!--===============spacing==============-->
+
+								<div class="form-group mb-0">
+									<div class="custom-control custom-checkbox" style="margin-left: 10px;">
+										<input type="checkbox" name="terms" id="terms" class="custom-control-input"
+											value="1" style="display:inline-flex" checked required>
+										<label class="custom-control-label" for="terms" style="display:unset;"><small>By
+												submitting the form &amp; proceeding, you agree to the <a
+													href="<?php echo site_url('terms-conditions'); ?>"
+													target="_blank">Terms of Use</a> and <a
+													href="<?php echo site_url('privacy-policy'); ?>"
+													target="_blank">Privacy Policy</a> of Indcapital.</small></label>
+										<div class="help-block font-small-3"></div>
+									</div>
+								</div>
+
+								<div class="form-group mb-2">
+									<div class="custom-control custom-checkbox" style="margin-left: 10px;">
+										<input type="checkbox" name="promotion" id="promotion"
+											class="custom-control-input" style="display:inline-flex" value="1" checked
+											required>
+										<label class="custom-control-label" for="promotion"
+											style="display:unset;"><small>I agree to receive promotional & informational
+												communications from Indcapital through Emails, calls or SMS
+												Services.</small></label>
+										<div class="help-block font-small-3"></div>
+									</div>
+								</div>
+
+
+							</div>
+							<?php echo form_close(); ?>
+						</div>
+					</div>
+					<?php } else if ($processstep == 'step2') {
+						?>
+					<div class="contact_form_box_inner simple_form">
+						<div class="contact_form_shortcode">
+							<?php echo form_open('digital/checkotpCode', array('id' => 'submitForm2', 'class' => 'wpcf7-form init', 'novalidate' => 'novalidate')); ?>
+
+							<label class="text-dark pd_bottom_20">Mobile No. :
+								<strong><?php echo $userdetails['mobile']; ?></strong></label>
+							<input type="hidden" name="loanamount" id="loanamount"
+								value="<?php echo $userdetails['loanamount']; ?>">
+
+							<input type="hidden" name="otpmobile" id="otpmobile"
+								value="<?php echo $userdetails['mobile']; ?>">
+
+							<div class="row gutter_15px">
+								<div class="col-lg-12 form-group">
+									<div class="text-center" style="font-size: 70px !important;"><i
+											class="fa fa-commenting-o" aria-hidden="true"></i>
+									</div>
+									<label> Please enter the OTP you get on this number:<br>
+										<span class="wpcf7-form-control-wrap" data-name="tel-922">
+											<input type="text" name="otpcode" id="otpcode"
+												class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required optnumber"
+												required inputmode="numeric" placeholder="Enter OTP Code" maxlength="4"
+												data-validation-regex-regex="[0-9]+"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></span>
+										<div class="help-block font-small-3"></div>
+										<br>
+									</label>
+								</div>
+
+								<div class="col-lg-12 form-group">
+									<div class="p-countdown">
+										<div class="p-countdown-count" id="counttime">
+											<code>New OTP code will generate in <span id="timer">15</span> Sec</code>
+										</div>
+										<div id="resendBtn" class="d-none">
+											<code>Didn’t receive OTP? <a href="javascript:resendotp()">Resend OTP</a></code>
+										</div>
+										<code id="resend-message"></code>
+										<div class="custom-error" id="otpcodeError"></div>
+									</div>
+								</div>
+
+								<!--===============spacing==============-->
+								<div class="pd_bottom_20"></div>
+								<!--===============spacing==============-->
+
+								<div class="col-lg-12">
+									<button type="submit" id="form-submit2"
+										class="wpcf7-form-control has-spinner wpcf7-submit custom-btn">VERIFY
+										OTP</button>
+								</div>
+							</div>
+							<?php echo form_close(); ?>
+						</div>
+					</div>
+					<?php } else if ($processstep == 'step3') { ?>
+					<div class="contact_form_box_inner simple_form">
+						<div class="contact_form_shortcode">
+							<?php echo form_open('digital/registeredUser', array('id' => 'submitForm3', 'class' => 'wpcf7-form init', 'novalidate' => 'novalidate')); ?>
+							<div class="row gutter_15px">
+
+								<div class="col-lg-12 form-group">
+									<input type="hidden" name="loanamount" id="loanamount"
+										value="<?php echo $userdetails['loanamount']; ?>">
+
+									<div> <label class="text-dark pd_bottom_20">Mobile No. :
+											<strong><?php echo $userdetails['mobile']; ?> </strong></label></div>
+									<input type="hidden" name="usermobile" id="usermobile"
+										value="<?php echo $userdetails['mobile']; ?>">
+
+									<input type="hidden" name="referralcode" id="referralcode"
+										value="<?php echo $userdetails['referralcode']; ?>">
+									<input type="hidden" name="loantype" id="loantype" value="11">
+								</div>
+
+								<div class="col-lg-12 form-check pd_bottom_20">
+									<input class="btn-check" type="radio" value="0" name="usertype" id="salaried"
+										autocomplete="off" checked>
+									<label class="btn btn-outline-success btn-xs mb-1" for="salaried"> Salaried
+									</label>
+
+									<input class="btn-check" type="radio" value="1" name="usertype" id="selfemployed"
+										autocomplete="off">
+									<label class="btn btn-outline-success btn-xs mb-1" for="selfemployed">
+										Self-Employed </label>
+								</div>
+
+								<div class="col-lg-12 form-group">
+									<label class="w-100"> Your Name *<br>
+										<span class="wpcf7-form-control-wrap" data-name="your-name">
+											<input type="text" aria-required="true" name="username" id="username"
+												class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+												placeholder="Enter Bank Registered Name" required
+												data-validation-regex-regex="^[a-zA-z]+([\s][a-zA-Z]+)*$"
+												size="40"></span>
+										<div class="help-block font-small-3"></div><br>
+									</label>
+								</div>
+
+								<div class="col-lg-12 form-group">
+									<label class="w-100">Email Id *<br>
+										<span class="wpcf7-form-control-wrap" data-name="your-email">
+											<input type="email" aria-required="true" name="useremail"
+												class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+												placeholder="Email id As per your bank records" required
+												size="40"></span>
+										<div class="help-block font-small-3"></div><br>
+									</label>
+								</div>
+
+								<div class="col-lg-12 form-group">
+									<button type="submit" id="form-submit3"
+										class="wpcf7-form-control has-spinner wpcf7-submit custom-btn"
+										onclick="_tfa.push({notify: 'event', name: 'indc_pl_lead', id: 1719054});">SUBMIT</button>
+								</div>
+							</div>
+							<?php echo form_close(); ?>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+
+			<?php
+			if ($processstep == 'step1') {
+			?>
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 d-none d-md-block">
+				<img src="<?php echo base_url('assets/images/lendingpage3.png'); ?>" alt="customer"
+					class="img-fluid " />
+			</div>
+			<?php } ?>
+
+		</div>
+	</div>
+	<!--===============spacing==============-->
+	<div class="pd_bottom_10"></div>
+	<!--===============spacing==============-->
+
+	<?php
+	if ($processstep == 'step1') {
+	?>
+
+	<img src="<?php echo base_url('assets/images/lendingpage2.png'); ?>" alt="customer" class="img-fluid d-md-none" />
+	<?php } ?>
+
+	<!--===============spacing==============-->
+	<div class="pd_bottom_10"></div>
+	<!--===============spacing==============-->
+</section>
+
+<section class="contact-box-sections">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!--===============spacing==============-->
+				<div class="pd_bottom_50"></div>
+				<!--===============spacing==============-->
+				<p class="small text-center"><strong>Get Your Personal Loan in just 3 Steps from Our NBFC/Lending
+						Partners:</strong></p>
+				<div class="client_logo_carousel type_one">
+					<div class="swiper-container" data-swiper='{
+								"autoplay": {
+								"delay": 6000
+								},
+								"freeMode": true,
+								"loop": true,
+								"speed": 1000,
+								"centeredSlides": false,
+								"slidesPerView": 5,
+								"spaceBetween": 10,
+								"pagination": {
+								"el": ".swiper-pagination",
+								"clickable": true
+								},
+								"navigation": {
+								"nextEl": ".swiper-button-next",
+								"prevEl": ".swiper-button-prev"
+								},
+								"breakpoints": {
+									"1200": {
+										"slidesPerView": 6 
+									},
+									"1024": {
+										"slidesPerView": 6 
+									},
+									"768": {
+										"slidesPerView": 3 
+									},
+									"576": {
+										"slidesPerView": 2 
+									},
+									"0": {
+										"slidesPerView": 2 
+									}
+								}
+							}'>
+						<div class="swiper-wrapper">
+							<?php
+								foreach ($banklist as $row) { ?>
+							<div class="swiper-slide">
+								<div class="image p-0">
+									<img src="<?php echo base_url('assets/images/bank/' . $row->bank_image); ?>"
+										alt="<?php echo $row->bank_name; ?>">
+								</div>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="text-left">
+				<!--===============spacing==============-->
+				<div class="pd_bottom_50"></div>
+				<!--===============spacing==============-->
+
+				<p>Disclaimer: Loan Tenure ranges from minimum 6 months to maximum of 60 months, with annual interest rates starting at 11% and going up to 34%. A processing fee up to 2% may be applicable. Representative Example: If a personal loan of ₹1,00,000 is availed at an interest rate of 12.5% per annum for a tenure of 12 months, and a processing fee of 2% is applied: Interest Payable: ₹6,720 approx. Processing Fee: ₹2,000. Total Loan Cost (including interest + fee): ₹1,08,720. APR (Annual Percentage Rate): 14.27% approx. *T&C Apply. All figures are indicative and may vary based on customer profile and final approval by NBFCs or financial partners. Growquik Services Private Limited is a financial consultancy and does not provide loans directly. Company Address: <?php echo COMPANY_ADDRESS ?> | CIN :
+					U67100GJ2022PTC134395 | Time
+					: 10AM to 5PM (Monday to Saturday)</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!----contact end---->
+
+</div>
+<!--===============PAGE CONTENT==============-->
+<?php
+$this->load->view('includes/footer-apply.php');
+
+?>
+<script src="<?php echo base_url('assets/js/loanscript_tooltip.js'); ?>" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script type="text/javascript">
+	function resendotp() {
+		loanamount = document.getElementById('loanamount').value;
+		mobile = document.getElementById('otpmobile').value;
+
+		$.ajax({
+			url: '<?php echo base_url("digital/resendotpCode"); ?>',
+			type: "POST",
+			data: 'mobile=' + mobile + '&loanamount=' + loanamount,
+			dataType: "JSON",
+			cache: false,
+			processData: false,
+			success: function (response) {
+				if (response['success'] == true) {
+					$('#resend-message').html(response['message']);
+					$.notify({
+						message: response['message']
+					}, {
+						type: 'success'
+					});
+				} else {
+					$.notify({
+						message: response['message']
+					}, {
+						type: 'danger'
+					});
+				}
+			},
+			error: function (jXHR, textStatus, errorThrown) {
+				$.notify({
+					message: errorThrown
+				}, {
+					type: 'danger'
+				});
+			}
+		});
+	}
+
+	$(function () {
+		$('#submitForm1').on('submit', function (e) {
+			e.preventDefault();
+
+			$.ajax({
+				url: $(this).attr('action') || window.location.pathname,
+				type: "POST",
+				data: $(this).serialize(),
+				dataType: "JSON",
+				cache: false,
+				processData: false,
+				beforeSend: function () {
+					$('#form-submit1').html(
+						'<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> APPLYING...'
+					);
+					$('#form-submit1').attr('disabled', true);
+				},
+				success: function (response) {
+					if (response['success'] == true) {
+						if (response['redirect_url'] != "") {
+							window.location.href = response['redirect_url'];
+						} else {
+							window.location = "./personalLoan/s2/" + response['mobile'];
+						}
+					} else {
+						$('#mobilenoError').html(response['message']);
+						$.notify({
+							message: response['message']
+						}, {
+							type: 'danger'
+						});
+					}
+
+					$('#form-submit1').html('APPLY NOW');
+					$('#form-submit1').attr('disabled', false);
+				},
+				error: function (jXHR, textStatus, errorThrown) {
+					$('#form-submit1').html('APPLY NOW');
+					$('#form-submit1').attr('disabled', false);
+					$.notify({
+						message: errorThrown
+					}, {
+						type: 'danger'
+					});
+				}
+			});
+		});
+
+		$('#submitForm2').on('submit', function (e) {
+			e.preventDefault();
+			$('#resend-message').html('');
+			$('#otpcodeError').html('');
+
+			$.ajax({
+				url: $(this).attr('action') || window.location.pathname,
+				type: "POST",
+				data: $(this).serialize(),
+				dataType: "JSON",
+				cache: false,
+				processData: false,
+				beforeSend: function () {
+					$('#form-submit2').html(
+						'<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> VERIFYING...'
+					);
+					$('#form-submit2').attr('disabled', true);
+				},
+				success: function (response) {
+					if (response['success'] == true) {
+						window.location = "../../personalLoan/s3/" + response['mobile'];
+					} else {
+						$('#otpcodeError').html(response['message']);
+						$.notify({
+							message: response['message']
+						}, {
+							type: 'danger'
+						});
+					}
+
+					$('#form-submit2').html('VERIFY');
+					$('#form-submit2').attr('disabled', false);
+				},
+				error: function (jXHR, textStatus, errorThrown) {
+					$('#form-submit2').html('VERIFY');
+					$('#form-submit2').attr('disabled', false);
+					$.notify({
+						message: errorThrown
+					}, {
+						type: 'danger'
+					});
+				}
+			});
+		});
+
+
+		$('#submitForm3').on('submit', function (e) {
+			e.preventDefault();
+			$('#resend-message').html('');
+			$('#otpcodeError').html('');
+
+			$.ajax({
+				url: $(this).attr('action') || window.location.pathname,
+				type: "POST",
+				data: $(this).serialize(),
+				dataType: "JSON",
+				cache: false,
+				processData: false,
+				beforeSend: function () {
+					$('#form-submit3').html(
+						'<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> PROCESSING...'
+					);
+					$('#form-submit3').attr('disabled', true);
+				},
+				success: function (response) {
+					if (response['success'] == true) {
+						window.location.href = response['redirect_url'];
+					} else {
+						$('#otpcodeError').html(response['message']);
+						$.notify({
+							message: response['message']
+						}, {
+							type: 'danger'
+						});
+					}
+
+					$('#form-submit3').html('PROCESS');
+					$('#form-submit3').attr('disabled', false);
+				},
+				error: function (jXHR, textStatus, errorThrown) {
+					$('#form-submit3').html('PROCESS');
+					$('#form-submit3').attr('disabled', false);
+					$.notify({
+						message: errorThrown
+					}, {
+						type: 'danger'
+					});
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+    let resendBtn = document.getElementById('resendBtn');
+	let counttime = document.getElementById('counttime'); 
+    let timerDisplay = document.getElementById('timer');
+    let countdown = 15;
+
+    let interval = setInterval(() => {
+      countdown--;
+      timerDisplay.textContent = countdown;
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        resendBtn.classList.remove('d-none');
+		counttime.classList.add('d-none');
+        timerDisplay.textContent = '';
+      }
+    }, 1000);
+
+    resendBtn.addEventListener('click', function () {
+      resendBtn.classList.add('d-none');
+	  counttime.classList.remove('d-none');
+      countdown = 15;
+      timerDisplay.textContent = countdown;
+      
+      interval = setInterval(() => {
+        countdown--;
+        timerDisplay.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(interval);
+           resendBtn.classList.remove('d-none');
+		   counttime.classList.add('d-none');
+          timerDisplay.textContent = '';
+        }
+      }, 1000);
+
+    
+    });
+  </script>
